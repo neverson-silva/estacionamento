@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Entrada Veículos
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button 
+         icon-only
+         (click)="addProduto()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-datetime name="dataBusca" displayFormat="DD/MM/YYYY" (ionChange)="buscaEntradas($event)" [(ngModel)]="dataBusca"></ion-datetime>
+  <ion-searchbar
+      (ionInput)="filtraProdutos($event)"
+      [(ngModel)]="searchText">
+
+  </ion-searchbar>
+  <ion-list>
+    <ion-item-sliding 
+        *ngFor=
+        "let produto of produtos; 
+         let i=index" >
+    <ion-item nopadding>
+      <p>
+        <span>{{produto.placa}}</span><br>
+        <span>{{produto.dataEntrada}}</span><br>
+        <span>{{produto.horaEntrada}}</span>
+      </p>
+    </ion-item>
+    <ion-item-options 
+                 side="rigth">
+      <button ion-button
+          color="primary"
+          (click)="editProduto()">
+        <ion-icon name="create">          
+        </ion-icon>
+      </button>
+      <button ion-button
+              color="danger"
+              (click)="deleteProduto(i)">
+        <ion-icon name="trash">
+        </ion-icon>
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>
+</ion-content>
