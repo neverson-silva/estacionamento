@@ -14,39 +14,54 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-datetime name="dataBusca" displayFormat="DD/MM/YYYY" (ionChange)="buscaEntradas($event)" [(ngModel)]="dataBusca"></ion-datetime>
+    <ion-datetime name="dataBusca" displayFormat="DD/MM/YYYY" 
+      (ionChange)="buscaEntradas($event)" 
+      [(ngModel)]="dataBusca"
+      doneText="OK"
+      cancelText="Cancelar"
+    >
+    </ion-datetime>
   <ion-searchbar
       (ionInput)="filtraProdutos($event)"
-      [(ngModel)]="searchText">
+      [(ngModel)]="searchText"
+      placeholder="Buscar">
 
   </ion-searchbar>
   <ion-list>
     <ion-item-sliding 
         *ngFor=
-        "let produto of produtos; 
-         let i=index" >
-    <ion-item nopadding>
-      <p>
-        <span>{{produto.placa}}</span><br>
-        <span>{{produto.dataEntrada}}</span><br>
-        <span>{{produto.horaEntrada}}</span>
-      </p>
-    </ion-item>
-    <ion-item-options 
-                 side="rigth">
-      <button ion-button
-          color="primary"
-          (click)="editProduto()">
-        <ion-icon name="create">          
-        </ion-icon>
-      </button>
-      <button ion-button
-              color="danger"
-              (click)="deleteProduto(i)">
-        <ion-icon name="trash">
-        </ion-icon>
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>
+        "let entrada of entradas" >
+      <ion-item nopadding>
+        <p>
+          <span>{{entrada.placa}}</span><br>
+          <span>{{entrada.dataEntrada}}</span><br>
+          <span>{{entrada.horaEntrada}}</span>
+          <span id="icon">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </span>
+        </p>
+      </ion-item>
+      <ion-item-options 
+                  side="rigth">
+        <button ion-button
+                color="secondary"
+        >
+          <ion-icon name="exit"></ion-icon>
+        </button>
+        <button ion-button
+            color="primary"
+            (click)="editProduto()">
+          <ion-icon name="create">          
+          </ion-icon>
+        </button>
+        <button ion-button
+                color="danger"
+                (click)="deleteProduto(entrada.id)">
+          <ion-icon name="trash">
+          </ion-icon>
+        </button>
+
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { Camera } from '@ionic-native/camera';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,16 +11,19 @@ import { Toast } from '@ionic-native/toast';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
-import { AddProdutoPage } from '../pages/add-produto/add-produto';
-import { EditProdutoPage } from '../pages/edit-produto/edit-produto';
+import { AddEntradaPage } from '../pages/fluxo-veiculos/entrada/add-entrada/add-entrada';
+import { EditProdutoPage } from '../pages/fluxo-veiculos/entrada/edit-produto/edit-produto';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProdutoProvider } from '../providers/produto/produto';
+import { EntradaProvider } from '../providers/fluxo-veiculos/entrada/entrada';
+import { SaidaProvider } from '../providers/fluxo-veiculos/saida/saida';
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddProdutoPage,
+    AddEntradaPage,
     EditProdutoPage
   ],
   imports: [
@@ -30,7 +34,7 @@ import { ProdutoProvider } from '../providers/produto/produto';
   entryComponents: [
     MyApp,
     HomePage,
-    AddProdutoPage,
+    AddEntradaPage,
     EditProdutoPage
   ],
   providers: [
@@ -40,7 +44,10 @@ import { ProdutoProvider } from '../providers/produto/produto';
     SQLite,
     Toast,
     DatabaseProvider,
-    ProdutoProvider
+    ProdutoProvider,
+    EntradaProvider,
+    SaidaProvider,
+    Camera
   ]
 })
 export class AppModule {}

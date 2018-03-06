@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, Toast, ToastController } from 'ionic-angular';
-import { AddProdutoPage } from '../add-produto/add-produto';
-import { EditProdutoPage } from '../edit-produto/edit-produto';
+import { AlertController } from 'ionic-angular';
+import { AddEntradaPage } from './../fluxo-veiculos/entrada/add-entrada/add-entrada';
+import { EditProdutoPage } from './../fluxo-veiculos/entrada/edit-produto/edit-produto';
 
-import { ProdutoProvider, Produto } from '../../providers/produto/produto'
+//import { ProdutoProvider, Produto } from '../../providers/produto/produto'
+import { EntradaProvider, Entrada } from './../../providers/fluxo-veiculos/entrada/entrada';
 
 @Component({
   selector: 'page-home',
@@ -11,15 +13,16 @@ import { ProdutoProvider, Produto } from '../../providers/produto/produto'
 })
 export class HomePage {
 
-  produtos:any[] = [];
+  entradas:any[] = [];
   searchText: string = null;
   dataBusca: string = new Date().toISOString();
 
-  model: Produto;
+  model: Entrada;
 
   constructor(public navCtrl: NavController, 
-                private produtoProvider: ProdutoProvider, private toast: ToastController) {
-    this.model=new Produto();
+                private entradaProvider: EntradaProvider, private toast: ToastController,
+                private alerta: AlertController) {
+    this.model = new Entrada();
   }
 
   ionViewDidEnter(){
@@ -27,11 +30,12 @@ export class HomePage {
   }
 
   getAllProdutos() {
-    let dia = new Date(this.dataBusca).toLocaleDateString('zh-Hans-CN');
-      this.produtoProvider.getAll(this.searchText, dia)
+      let dia = new Date(this.dataBusca).toISOString().substring(0, 10);
+      this.entradaProvider.getAll(dia, this.searchText)
       .then(
         (resultado: any[]) => {
-          this.produtos = resultado;
+          this.entradas = resultado;
+          console.log(dia);
         }
       )
       .catch((e) => console.error(e))
@@ -41,12 +45,12 @@ export class HomePage {
     this.getAllProdutos();
   }
 
-  buscaEntrada(ev: any) {
+  buscaEntradas(ev: any) {
     this.getAllProdutos();
   }
 
   addProduto() {
-    this.navCtrl.push(AddProdutoPage);
+    this.navCtrl.push(AddEntradaPage);
   }
 
   editProduto() {
@@ -54,26 +58,44 @@ export class HomePage {
   }
 
   deleteProduto(id: number) {
-    this.produtoProvider.delete(id)
-    .then(() => {
-      this.toast.create(
+    this.alerta.create({
+      title: 'Excluir Entrada?',
+      message: 'Você tem certeza que deseja excluir o registro desta entrada?',
+      buttons: [
         {
-          message: 'Produto Excluído',
-          duration: 3000,
-          position: 'botton'
+          text: 'Cancelar',
+          handler:() =>{
+            console.log('Exclusão cancelada');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            this.entradaProvider.delete(id)
+              .then(() => {
+                this.toast.create(
+                  {
+                    message: 'Entrada Excluída',
+                    duration: 3000,
+                    position: 'botton'
+                  }
+                ).present();
+                this.getAllProdutos();
+              })
+              .catch((e) => {
+                this.toast.create(
+                {
+                  message:'Erro ao registrar entrada ' + e,
+                  duration: 3000,
+                  position:'botton'
+                }
+                ).present();
+              })
+          }
         }
-      ).present();
-      this.getAllProdutos();
-    })
-    .catch((e) => {
-      this.toast.create(
-      {
-        message:'Erro ao incluir produto ' + e,
-        duration: 3000,
-        position:'botton'
-       }
-      ).present();
-    })
+      ]
+    }).present();
+    
   }
 
 }
