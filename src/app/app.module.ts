@@ -12,7 +12,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { AddEntradaPage } from '../pages/fluxo-veiculos/entrada/add-entrada/add-entrada';
-import { EditProdutoPage } from '../pages/fluxo-veiculos/entrada/edit-produto/edit-produto';
+import { EditEntradaPage } from '../pages/fluxo-veiculos/entrada/edit-entrada/edit-entrada';
 import { DatabaseProvider } from '../providers/database/database';
 import { ProdutoProvider } from '../providers/produto/produto';
 import { EntradaProvider } from '../providers/fluxo-veiculos/entrada/entrada';
@@ -24,7 +24,7 @@ import { SaidaProvider } from '../providers/fluxo-veiculos/saida/saida';
     MyApp,
     HomePage,
     AddEntradaPage,
-    EditProdutoPage
+    EditEntradaPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +35,7 @@ import { SaidaProvider } from '../providers/fluxo-veiculos/saida/saida';
     MyApp,
     HomePage,
     AddEntradaPage,
-    EditProdutoPage
+    EditEntradaPage
   ],
   providers: [
     StatusBar,

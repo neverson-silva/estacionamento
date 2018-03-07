@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Toast, ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AddEntradaPage } from './../fluxo-veiculos/entrada/add-entrada/add-entrada';
-import { EditProdutoPage } from './../fluxo-veiculos/entrada/edit-produto/edit-produto';
-
+import { EditEntradaPage } from '../fluxo-veiculos/entrada/edit-entrada/edit-entrada';
 //import { ProdutoProvider, Produto } from '../../providers/produto/produto'
 import { EntradaProvider, Entrada } from './../../providers/fluxo-veiculos/entrada/entrada';
 
@@ -54,7 +53,7 @@ export class HomePage {
   }
 
   editProduto() {
-    this.navCtrl.push(EditProdutoPage);
+    this.navCtrl.push(EditEntradaPage);
   }
 
   deleteProduto(id: number) {

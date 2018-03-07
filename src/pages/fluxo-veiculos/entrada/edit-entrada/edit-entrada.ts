@@ -10,10 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-edit-produto',
-  templateUrl: 'edit-produto.html',
+  selector: 'page-edit-entrada',
+  templateUrl: 'edit-entrada.html',
 })
-export class EditProdutoPage {
+export class EditEntradaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
