@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Registrar entrada de veículo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+      <ion-item>
+          <ion-label stacked>Placa</ion-label>
+          <ion-input type="text" name="placa" 
+              [(ngModel)]="model.placa">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Entrada</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.entrada"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Saída</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.saida"></ion-datetime> 
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Valor</ion-label>
+            <ion-input name="valor" type="text" [(ngModel)] = "model.valor"></ion-input>
+        </ion-item>
+  </ion-list>
+
+  <button class="select-image" ion-button block *ngIf="!srcImage" (click)="mostrarAcoes()" color="light">
+    <ion-icon name="camera"></ion-icon>
+  </button>
+
+  <div *ngIf="srcImage" class="image-wrapper">
+    <img id="image" [src]="srcImage" />
+    <button ion-button icon-left block (click)="analisar()" color="light">
+      <ion-icon name="search"></ion-icon>
+      Ler
+    </button>
+    <button ion-button icon-left block (click)="reiniciar()" color="light">
+      <ion-icon name="refresh"></ion-icon>
+      Reiniciar
+    </button>
+  </div>
+  <br><hr><br>
+  <button ion-button block (click)="grava()">Gravar</button>
+</ion-content>
+
