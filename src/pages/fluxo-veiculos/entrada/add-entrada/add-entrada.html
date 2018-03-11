@@ -1,9 +1,10 @@
 <ion-header>
+
   <ion-navbar>
     <ion-title>Registrar entrada de veículo</ion-title>
   </ion-navbar>
-</ion-header>
 
+</ion-header>
 <ion-content padding>
   <ion-list>
       <ion-item>
@@ -11,18 +12,6 @@
           <ion-input type="text" name="placa" 
               [(ngModel)]="model.placa">
           </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>Entrada</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.entrada"></ion-datetime>
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Saída</ion-label>
-            <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="model.saida"></ion-datetime> 
-        </ion-item>
-        <ion-item>
-            <ion-label stacked>Valor</ion-label>
-            <ion-input name="valor" type="text" [(ngModel)] = "model.valor"></ion-input>
         </ion-item>
   </ion-list>
 
@@ -41,6 +30,16 @@
       Reiniciar
     </button>
   </div>
+<!-- 
+  <ion-list>
+      <ion-label stacked>Data</ion-label>
+      <ion-datetime name="dataBusca" displayFormat="DD/MM/YYYY" [(ngModel)]="data"></ion-datetime>
+  </ion-list>
+  <ion-list>
+      <ion-label stacked>Hora</ion-label>
+      <ion-input type="text" name="hora" [(ngModel)]="model.horaEntrada"></ion-input>  
+  </ion-list> -->
+
   <br><hr><br>
   <button ion-button block (click)="grava()">Gravar</button>
 </ion-content>

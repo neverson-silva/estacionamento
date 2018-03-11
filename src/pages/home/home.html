@@ -1,108 +1,67 @@
-
-<!-- HEader -->
 <ion-header>
-  <ion-navbar color="primary">
-    <button *ngIf="header.menu" menuToggle start ion-button  icon-only>
-        <ion-icon name='menu'></ion-icon>
-    </button>
-    <ion-title *ngIf="header.title">
-      Entrada de Veículos
+  <ion-navbar>
+    <ion-title>
+      Entrada Veículos
     </ion-title>
-
-    <!-- SearchBar -->
     <ion-buttons end>
-        <button ion-button  icon-only (click)="showToolbar()">
-          <ion-icon name="search"></ion-icon>
-        </button>
+      <button ion-button 
+         icon-only
+         (click)="addProduto()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-searchbar
-      *ngIf="header.busca"
-      (ionInput)="filtraEntradas($event)"
-      placeholder="Buscar"
-    >
-    </ion-searchbar>
-
   </ion-navbar>
 </ion-header>
 
-<!-- SideMenu -->
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <button ion-item (click)="openPage('mensalistas')">
-        Mensalistas
-      </button>
-      <button ion-item (click)="openPage('entrada-veiculos')">
-        Entrada de Veículos
-      </button>
-      <button ion-item (click)="openPage('saida-veiculos')">
-        Saída de Veículos
-      </button>
-      <button ion-item (click)="openPage('valores')">
-        Valores
-      </button>
-      <button ion-item (click)="openPage('usuarios')">
-        Usuários
-      </button>
-      <button ion-item (click)="openPage('sair')">
-          Sair
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+<ion-content padding>
+    <ion-datetime name="dataBusca" displayFormat="DD/MM/YYYY" 
+      (ionChange)="buscaEntradas($event)" 
+      [(ngModel)]="dataBusca"
+      doneText="OK"
+      cancelText="Cancelar"
+    >
+    </ion-datetime>
+  <ion-searchbar
+      (ionInput)="filtraProdutos($event)"
+      [(ngModel)]="searchText"
+      placeholder="Buscar">
 
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
-<!-- Conteudo -->
-<ion-content padding >
-<ion-list>
-  <ion-item-sliding *ngFor="let entrada of veiculos">
-    <ion-item (click)="openUser(user.id)">
-        <span item-end>{{ (entrada.entrada).toLocaleDateString('en-GB') }}</span>
-        <h2>{{ entrada.placa }} </h2>
-      <p>
-        <span>{{ entrada.valor}} </span><br>
+  </ion-searchbar>
+  <ion-list>
+    <ion-item-sliding 
+        *ngFor=
+        "let entrada of entradas" >
+      <ion-item nopadding>
+        <p>
+          <span>{{entrada.placa}}</span><br>
+          <span>{{entrada.dataEntrada}}</span><br>
+          <span>{{entrada.horaEntrada}}</span>
+          <span id="icon">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </span>
+        </p>
+      </ion-item>
+      <ion-item-options 
+                  side="rigth">
+        <button ion-button
+                color="secondary"
+        >
+          <ion-icon name="exit"></ion-icon>
+        </button>
+        <button ion-button
+            color="primary"
+            (click)="editProduto()">
+          <ion-icon name="create">          
+          </ion-icon>
+        </button>
+        <button ion-button
+                color="danger"
+                (click)="deleteProduto(entrada.id)">
+          <ion-icon name="trash">
+          </ion-icon>
+        </button>
 
-      </p>
-    </ion-item>
-    <ion-item-options side="left">
-      <button ion-button color="primary" (click)="openEditUser(user.id)">
-        <ion-icon name="create"></ion-icon>
-        Editar
-      </button>
-      <button ion-button color="danger" (click)="deleteRegistro(entrada)">
-        <ion-icon name="trash"></ion-icon>
-        Excluir
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="totalPagina < totalEntradas">
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais registros...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
-
-<ion-fab right bottom>
-  <button ion-fab color="secondary" (click)="openPage('add-entrada')">
-    <ion-icon name="add"></ion-icon>
-  </button>
-</ion-fab>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
-
-<!-- Footer -->
-<ion-footer padding color="primary">
-      <ion-segment color="primary">
-          <ion-label>Escolha o dia</ion-label>
-          <ion-datetime color="primary" name="dataBusca" displayFormat="DD/MM/YYYY"
-            (ionChange)="buscaEntradas($event)"
-            [(ngModel)]="dataBusca"
-            doneText="OK"
-            cancelText="Cancelar"
-          >
-          </ion-datetime>
-      </ion-segment>
-</ion-footer>

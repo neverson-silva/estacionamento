@@ -1,7 +1,7 @@
 {
-  "name": "estacionamento",
+  "name": "sqlAula1",
   "version": "0.0.1",
-  "author": "Estacionamento Pos Inc.",
+  "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -29,7 +29,6 @@
     "@ionic/pro": "1.0.19",
     "@ionic/storage": "2.1.3",
     "cordova-android": "6.3.0",
-    "cordova-plugin-camera": "^4.0.2",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -47,7 +46,7 @@
     "@ionic/app-scripts": "3.1.8",
     "typescript": "2.4.2"
   },
-  "description": "Gerenciar vagas de estacionamento",
+  "description": "An Ionic project",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
@@ -56,8 +55,7 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
-      "cordova-plugin-x-toast": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-x-toast": {}
     },
     "platforms": [
       "android"
