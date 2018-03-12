@@ -6,7 +6,6 @@ import { ToastController } from 'ionic-angular';;
 export class EntradaProvider {
   private API_URL = 'https://polar-earth-95771.herokuapp.com/estacionados';
 
-  //private API_URL = 'https://estapos.herokuapp.com/api/'
 
   constructor(private http: Http, private toast: ToastController) {}
 
